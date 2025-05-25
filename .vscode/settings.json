@@ -1,1 +1,4 @@
-{}
+{
+    "codeium.aggressiveShutdown": true,
+    "codeium.disableSupercomplete": true
+}
