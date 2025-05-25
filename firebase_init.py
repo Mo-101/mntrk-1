@@ -3,8 +3,10 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from firebase_admin.exceptions import FirebaseError
 
+# Get path to the Firebase service account key
 cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "firebase_key.json")
 
+# Only initialize once
 if not firebase_admin._apps:
     try:
         cred = credentials.Certificate(cred_path)

@@ -70,3 +70,15 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+firebase_key.json
+.env
+
+#Firebase
+firebase_key.json
