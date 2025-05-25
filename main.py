@@ -1,15 +1,18 @@
-from fastapi import FastAPI
-from firebase_init import db
+import os
+import firebase_admin
+from firebase_admin import credentials, firestore
+from firebase_admin.exceptions import FirebaseError
 
-app = FastAPI()
+cred_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "firebase_key.json")
 
-@app.get("/")
-def root():
-    return {"status": "Mastomy Natalensis DeepSight Awakens!"}
-
-@app.get("/check-firestore")
-def check_firestore():
-    # Sample Firestore read
-    docs = db.collection("test-collection").stream()
-    data = [doc.to_dict() for doc in docs]
-    return {"documents": data}
+if not firebase_admin._apps:
+    try:
+        cred = credentials.Certificate(cred_path)
+        firebase_admin.initialize_app(cred)
+        db = firestore.client()
+    except FileNotFoundError:
+        raise RuntimeError(f"Firebase key file not found at: {cred_path}")
+    except FirebaseError as e:
+        raise RuntimeError(f"Failed to initialize Firebase: {e}")
+else:
+    db = firestore.client()

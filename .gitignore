@@ -65,3 +65,6 @@ target/
 
 #Firebase login
 firebase_key.json
+
+#Variables
+.env
