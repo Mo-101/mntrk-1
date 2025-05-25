@@ -62,3 +62,9 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
+
+#Firebase login
+firebase_key.json
+
+#Variables
+.env
